@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id           String   @id
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime
+  username     String   @unique
+  passwordHash String
+}
+
+model People {
+  id        String   @id
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  firstName String
+  lastName  String
+}
